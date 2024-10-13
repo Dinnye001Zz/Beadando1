@@ -3,13 +3,13 @@ name: Run Integration Tests
 on:
   push:
     branches:
-      - main  # Trigger on pushes to main branch
+      - main  # Trigger on pushes to the main branch
   pull_request:
     branches:
-      - main  # Trigger on pull requests to main branch
+      - main  # Trigger on pull requests to the main branch
 
 jobs:
-  integration-test:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,11 +21,6 @@ jobs:
         with:
           python-version: '3.11'  # Specify your Python version
 
-      - name: Install dependencies
+      - name: Run integration tests
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt  # Ensure you have a requirements.txt
-
-      - name: Run Integration Tests
-        run: |
-          python -m unittest discover -s tests_integration  # Adjust if your integration tests are in a different directory
+          python -m unittest discover -s tests
