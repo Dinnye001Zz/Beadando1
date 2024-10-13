@@ -1,6 +1,6 @@
 def square(n):
     """Return the square of a number."""
-    return n * n
+    return n * n + 1
 
 def main():
     # Example usage of the square function
