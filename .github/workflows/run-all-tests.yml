@@ -1,4 +1,4 @@
-name: Run Unit and Integration Tests
+name: Run All Tests
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main 
 
 jobs:
-  unit-tests:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,34 +16,16 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.11'
+          python-version: '3.11'  
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # pip install -r requirements.txt
 
       - name: Run unit tests
         run: |
-          python -m unittest discover -s tests
-
-  integration-tests:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          # pip install -r requirements.txt
+          python -m unittest discover -s . -p "test_program_code_unit.py" 
 
       - name: Run integration tests
         run: |
-          python -m unittest discover -s integration_tests
+          python -m unittest discover -s . -p "test_program_code_integration.py"  # Discover integration tests
