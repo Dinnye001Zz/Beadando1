@@ -7,7 +7,6 @@ def main():
     number = 5
     result = square(number)
     print(f"The square of {number} is {result}")
-#trigger comment
 if __name__ == "__main__":
 #main() runs only when the script is executed directly
     main()
